@@ -1,6 +1,10 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, unnecessary_null_comparison
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:imagetotext/service/image_picker_service.dart';
 
 class ImageToTextPage extends StatefulWidget {
   const ImageToTextPage({Key? key}) : super(key: key);
@@ -10,6 +14,22 @@ class ImageToTextPage extends StatefulWidget {
 }
 
 class _ImageToTextPageState extends State<ImageToTextPage> {
+  final ImagePicked _imagePicked = Get.put(ImagePicked());
+//  Future<List<RecognisedText>> getText(String path) async {
+//     final inputImage = InputImage.fromFilePath(path);
+//     final textDetector = GoogleMlKit.vision.textDetector();
+//     final RecognisedText recognisedText =
+//         await textDetector.processImage(inputImage);
+
+//     List<RecognisedText> recognizedList = [];
+
+//     for (TextBlock block in recognisedText.blocks) {
+//       recognizedList.add(
+//          (lines: block.lines, block: block.text.toLowerCase()));
+//     }
+
+//     return recognizedList;
+//   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +37,14 @@ class _ImageToTextPageState extends State<ImageToTextPage> {
         child: Column(
           children: [
             Expanded(
-              child: Container(
-                child: Center(child: Text('Select Image')),
+              child: Obx(
+                () => (Container(
+                  child: _imagePicked.image.isNotEmpty
+                      ? Image.file(File('${_imagePicked.image}'))
+                      : Center(
+                          child: Text('Select Image'),
+                        ),
+                )),
               ),
             ),
             Container(
@@ -32,7 +58,9 @@ class _ImageToTextPageState extends State<ImageToTextPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await _imagePicked.getImage();
+                    },
                     child: Text('Pick Image'),
                   ),
                   InkWell(
