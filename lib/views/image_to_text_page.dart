@@ -2,8 +2,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:imagetotext/controller/text_to_image_controller.dart';
 import 'package:imagetotext/service/image_picker_service.dart';
 
 class ImageToTextPage extends StatefulWidget {
@@ -14,22 +16,8 @@ class ImageToTextPage extends StatefulWidget {
 }
 
 class _ImageToTextPageState extends State<ImageToTextPage> {
-  final ImagePicked _imagePicked = Get.put(ImagePicked());
-//  Future<List<RecognisedText>> getText(String path) async {
-//     final inputImage = InputImage.fromFilePath(path);
-//     final textDetector = GoogleMlKit.vision.textDetector();
-//     final RecognisedText recognisedText =
-//         await textDetector.processImage(inputImage);
-
-//     List<RecognisedText> recognizedList = [];
-
-//     for (TextBlock block in recognisedText.blocks) {
-//       recognizedList.add(
-//          (lines: block.lines, block: block.text.toLowerCase()));
-//     }
-
-//     return recognizedList;
-//   }
+  final _imagePicked = Get.put(ImagePicked());
+  final _textToImage = Get.put(TextToImage());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +26,20 @@ class _ImageToTextPageState extends State<ImageToTextPage> {
           children: [
             Expanded(
               child: Obx(
-                () => (Container(
-                  child: _imagePicked.image.isNotEmpty
-                      ? Image.file(File('${_imagePicked.image}'))
-                      : Center(
-                          child: Text('Select Image'),
+                () => (_textToImage.scanText.isNotEmpty
+                    ? Container(
+                        child: Center(
+                          // ignore: unnecessary_string_interpolations
+                          child: Text('${_textToImage.scanText.value}'),
                         ),
-                )),
+                      )
+                    : Container(
+                        child: _imagePicked.image.isNotEmpty
+                            ? Image.file(File('${_imagePicked.image}'))
+                            : Center(
+                                child: Text('Select Image'),
+                              ),
+                      )),
               ),
             ),
             Container(
@@ -60,11 +55,19 @@ class _ImageToTextPageState extends State<ImageToTextPage> {
                   ElevatedButton(
                     onPressed: () async {
                       await _imagePicked.getImage();
+                      if (_imagePicked.image.isNotEmpty) {
+                        _textToImage.getText(_imagePicked.image.value);
+                        Get.snackbar('Done', "Image To Text");
+                      }
                     },
                     child: Text('Pick Image'),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Clipboard.setData(
+                          ClipboardData(text: _textToImage.scanText.value));
+                      Get.snackbar('Thanks', 'Text Copy Confrom');
+                    },
                     child: Icon(
                       Icons.copy_sharp,
                       color: Colors.white,
