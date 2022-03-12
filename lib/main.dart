@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:imagetotext/views/home_screen_page.dart';
-import 'package:imagetotext/views/image_to_text_page.dart';
+import 'package:imagetotext/views/user/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ImageToTextPage(),
+      home: LoginPage(),
+      builder: EasyLoading.init(),
     );
   }
 }

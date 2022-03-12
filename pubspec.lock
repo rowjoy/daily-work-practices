@@ -64,11 +64,32 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  ffi:
+    dependency: transitive
+    description:
+      name: ffi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
+  file:
+    dependency: transitive
+    description:
+      name: file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.1.2"
   flutter:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_easyloading:
+    dependency: "direct main"
+    description:
+      name: flutter_easyloading
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -83,6 +104,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  flutter_spinkit:
+    dependency: transitive
+    description:
+      name: flutter_spinkit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -100,6 +128,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.6.1"
+  get_storage:
+    dependency: "direct main"
+    description:
+      name: get_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   google_ml_kit:
     dependency: "direct main"
     description:
@@ -108,7 +143,7 @@ packages:
     source: hosted
     version: "0.7.3"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -184,6 +219,62 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
+  path_provider:
+    dependency: transitive
+    description:
+      name: path_provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.9"
+  path_provider_android:
+    dependency: transitive
+    description:
+      name: path_provider_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.12"
+  path_provider_ios:
+    dependency: transitive
+    description:
+      name: path_provider_ios
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.8"
+  path_provider_linux:
+    dependency: transitive
+    description:
+      name: path_provider_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.5"
+  path_provider_macos:
+    dependency: transitive
+    description:
+      name: path_provider_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
+  path_provider_platform_interface:
+    dependency: transitive
+    description:
+      name: path_provider_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
+  path_provider_windows:
+    dependency: transitive
+    description:
+      name: path_provider_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
+  platform:
+    dependency: transitive
+    description:
+      name: platform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -191,6 +282,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  process:
+    dependency: transitive
+    description:
+      name: process
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.4"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -252,6 +350,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  win32:
+    dependency: transitive
+    description:
+      name: win32
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.4.1"
+  xdg_directories:
+    dependency: transitive
+    description:
+      name: xdg_directories
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+1"
 sdks:
   dart: ">=2.17.0-67.0.dev <3.0.0"
-  flutter: ">=2.5.0"
+  flutter: ">=2.8.0"
