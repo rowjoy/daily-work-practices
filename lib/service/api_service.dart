@@ -12,6 +12,7 @@ class ApiService {
     required String url,
   }) async {
     try {
+      EasyLoading.show(status: "Lodding...");
       final responce = await http.get(Uri.parse('$baseUrl/$url'));
       if (responce.statusCode == 200) {
         print(responce.body);
@@ -20,16 +21,21 @@ class ApiService {
       } else {
         var errorbody = jsonDecode(responce.body);
         Helper.showsnackber(title: 'massage', message: errorbody['message']);
+        EasyLoading.dismiss();
       }
     } on SocketException catch (_) {
       Helper.showsnackber(
           title: 'massage', message: 'Please Check your Internet Connection');
+      EasyLoading.dismiss();
     } on HttpException catch (error) {
       Helper.showsnackber(title: 'massage', message: error.message);
+      EasyLoading.dismiss();
     } on FormatException catch (error) {
       Helper.showsnackber(title: 'massage', message: error.message);
+      EasyLoading.dismiss();
     } catch (error) {
       Helper.showsnackber(message: '$error');
+      EasyLoading.dismiss();
     }
   }
 
@@ -49,24 +55,31 @@ class ApiService {
         },
         body: jsonEncode(data),
       );
-      if (responce.statusCode == 201) {
+      EasyLoading.dismiss();
+      if (responce.statusCode == 200) {
         var jsonString = jsonDecode(responce.body);
+        print(jsonString);
         return jsonString;
       } else {
         var errorbody = jsonDecode(responce.body);
         Helper.showsnackber(title: 'massage', message: errorbody['message']);
-        print("New Token ${errorbody['token']}");
         EasyLoading.dismiss();
+        return null;
+        // print("New Token ${errorbody['token']}");
       }
     } on SocketException catch (_) {
       Helper.showsnackber(
           title: 'Hello1', message: "Please Check our Internet Connection");
+      EasyLoading.dismiss();
     } on HttpException catch (error) {
       Helper.showsnackber(title: 'Hello2', message: error.message);
+      EasyLoading.dismiss();
     } on FormatException catch (error) {
       Helper.showsnackber(message: error.message);
+      EasyLoading.dismiss();
     } catch (error) {
       Helper.showsnackber(message: '$error');
+      EasyLoading.dismiss();
     }
   }
 }
