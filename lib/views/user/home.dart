@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../helper/get_storage.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -11,7 +13,10 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           child: Center(
-            child: Text('Wlcome to home page'),
+            child: InkWell(
+              onTap: () {},
+              child: Text('Wlcome to home page'),
+            ),
           ),
         ),
       ),

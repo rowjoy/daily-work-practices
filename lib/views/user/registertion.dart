@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imagetotext/controller/registertion_controller.dart';
+import 'package:imagetotext/helper/get_storage.dart';
 import 'package:imagetotext/model/registration_model.dart';
 import 'package:imagetotext/views/user/home.dart';
 
