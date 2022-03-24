@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:imagetotext/helper/get_storage.dart';
 
 class TextToImage extends GetxController {
   TextDetector textDetector = GoogleMlKit.vision.textDetector();
@@ -17,8 +18,8 @@ class TextToImage extends GetxController {
           scanText.value = scanText.value + '  ' + element.text;
         }
         scanText.value = scanText + '\n';
+        LocalStorage.localStorage.write("ImageToText", scanText.value);
       }
     }
-    print(scanText.value);
   }
 }

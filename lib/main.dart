@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:imagetotext/animation/part_1.dart';
 import 'package:imagetotext/views/image_to_text_page.dart';
 import 'package:imagetotext/views/user/login.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ImageToTextPage(),
+      home: AnimationPart1(),
       builder: EasyLoading.init(),
     );
   }

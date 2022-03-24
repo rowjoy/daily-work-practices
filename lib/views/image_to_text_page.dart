@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:imagetotext/controller/text_to_image_controller.dart';
+import 'package:imagetotext/helper/get_storage.dart';
 import 'package:imagetotext/service/image_picker_service.dart';
 
 class ImageToTextPage extends StatefulWidget {
@@ -56,7 +57,14 @@ class _ImageToTextPageState extends State<ImageToTextPage> {
                     onPressed: () async {
                       await _imagePicked.getImage();
                       if (_imagePicked.image.isNotEmpty) {
-                        _textToImage.getText(_imagePicked.image.value);
+                        _textToImage
+                            .getText(_imagePicked.image.value)
+                            .then((value) {
+                          if (value != null) {
+                            LocalStorage.localStorage.remove("Image");
+                            _imagePicked.image.value = "";
+                          }
+                        });
                         Get.snackbar('Done', "Image To Text");
                       }
                     },
@@ -66,6 +74,8 @@ class _ImageToTextPageState extends State<ImageToTextPage> {
                     onTap: () {
                       Clipboard.setData(
                           ClipboardData(text: _textToImage.scanText.value));
+                      LocalStorage.localStorage.remove('Image');
+                      _textToImage.scanText.value = "";
                       Get.snackbar('Thanks', 'Text Copy Confrom');
                     },
                     child: Icon(
