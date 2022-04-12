@@ -94,7 +94,6 @@ class _AnimationPart1State extends State<AnimationPart1> {
                     duration: Duration(seconds: 6),
                     child: Text(
                       "Welcome",
-                      textAlign: TextAlign.right,
                     ),
                   ),
                 ),
