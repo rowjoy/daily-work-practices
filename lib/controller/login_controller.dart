@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:imagetotext/String/string.dart';
+import 'package:imagetotext/helper/get_storage.dart';
 import 'package:imagetotext/model/login_model.dart';
 import 'package:imagetotext/service/api_service.dart';
 import 'package:imagetotext/views/user/home.dart';
@@ -16,6 +17,7 @@ class LoginController extends GetxController {
       uri: Strings.loginUrl,
       data: login.toJson(),
     ).then((data) {
+      LocalStorage.localStorage.write('token', data['token']);
       if (data['message'] != null) {
         Login _login = Login.fromJson(data);
         if (_login.email!.isNotEmpty) {
