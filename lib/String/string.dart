@@ -13,4 +13,5 @@ class Strings {
   static var fackurl = "https://jsonplaceholder.typicode.com";
   static var post = "posts";
   static var comment = "comments";
+  static var album = "albums";
 }
