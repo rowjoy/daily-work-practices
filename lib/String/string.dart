@@ -14,4 +14,5 @@ class Strings {
   static var post = "posts";
   static var comment = "comments";
   static var album = "albums";
+  static var users = "users";
 }

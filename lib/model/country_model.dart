@@ -1,11 +1,13 @@
-import 'dart:convert';
+// To parse this JSON data, do
+//
+//     final countryModel = countryModelFromJson(jsonString);
 
-Countrys countrysFromJson(String str) => Countrys.fromJson(json.decode(str));
+// CountryModel countryModelFromJson(String str) => CountryModel.fromJson(json.decode(str));
 
-String countrysToJson(Countrys data) => json.encode(data.toJson());
+// String countryModelToJson(CountryModel data) => json.encode(data.toJson());
 
-class Countrys {
-  Countrys({
+class CountryModel {
+  CountryModel({
     this.message,
     this.statusCode,
     this.countries,
@@ -15,7 +17,7 @@ class Countrys {
   int? statusCode;
   List<Country>? countries;
 
-  factory Countrys.fromJson(Map<String, dynamic> json) => Countrys(
+  factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
         message: json["message"],
         statusCode: json["statusCode"],
         countries: List<Country>.from(
@@ -47,6 +49,8 @@ class Country {
     this.code5,
     this.chkBlkLst,
     this.callingCode,
+    this.isFrom,
+    this.isTo,
   });
 
   int? id;
@@ -65,6 +69,8 @@ class Country {
   String? code5;
   int? chkBlkLst;
   String? callingCode;
+  bool? isFrom;
+  bool? isTo;
 
   factory Country.fromJson(Map<String, dynamic> json) => Country(
         id: json["id"],
@@ -83,6 +89,8 @@ class Country {
         code5: json["code5"],
         chkBlkLst: json["chkBlkLst"],
         callingCode: json["callingCode"],
+        isFrom: json["isFrom"] == null ? null : json["isFrom"],
+        isTo: json["isTo"] == null ? null : json["isTo"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -102,5 +110,7 @@ class Country {
         "code5": code5,
         "chkBlkLst": chkBlkLst,
         "callingCode": callingCode,
+        "isFrom": isFrom == null ? null : isFrom,
+        "isTo": isTo == null ? null : isTo,
       };
 }
