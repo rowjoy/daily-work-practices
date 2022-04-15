@@ -44,12 +44,43 @@ class _CountryPageState extends State<CountryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView.builder(
-          itemCount: _countryList.countryData.length,
-          itemBuilder: (context, index) {
-            return Text(
-                "${_countryList.countryData.value.map((element) => element.name)}");
-          },
+        child: Container(
+          child: FutureBuilder<List<Country>>(
+            future: _countryList.getCountry(),
+            builder: (context, snapSort) {
+              if (snapSort.hasData) {
+                // ignore: avoid_print
+                print(" getdata${snapSort.data}");
+                List<Country>? data = snapSort.data;
+
+                return ListView.builder(
+                    itemCount: data!.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          child: Column(
+                            children: [
+                              Text("${data[index].name}"),
+                              Text("${data[index].isoCode}"),
+                              Text("${data[index].code3}"),
+                              Text("${data[index].nationality}"),
+                              Text("${data[index].riskFactor}"),
+                              Text("${data[index].fiscalRef}"),
+                              Text("${data[index].seqId}"),
+                              Text("${data[index].fiscalRef}"),
+                              Text("${data[index].callingCode}"),
+                            ],
+                          ),
+                        ),
+                      );
+                    });
+              }
+              return Center(
+                child: Text("Lodding..."),
+              );
+            },
+          ),
         ),
       ),
     );

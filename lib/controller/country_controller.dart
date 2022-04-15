@@ -1,22 +1,26 @@
+// ignore_for_file: avoid_print
+
 import 'package:get/get.dart';
 import 'package:imagetotext/String/string.dart';
 import 'package:imagetotext/model/country_model.dart';
 import 'package:imagetotext/service/api_service.dart';
 
-final ApiService _apiService = ApiService();
-
 class CountryList extends GetxController {
-  RxList countryData = [].obs;
-  Future getCountry() async {
-    ApiService.getdata(
+  Future<List<Country>> getCountry() async {
+    List dataset = [].obs;
+    Map data = await ApiService.getdata(
       baseUrl: Strings.countryBaseUrl,
       url: Strings.countryUrl,
-    ).then((value) {
-      for (var i in value["countries"]) {
-        countryData.add(CountryModel.fromJson(i));
-        print(countryData.length);
+    );
+    print("DATA GET ${data["countries"]}");
+    if (data.isNotEmpty) {
+      for (var i in data["countries"]) {
+        dataset.add(i);
+        // ignore: unnecessary_brace_in_string_interps
+        print("GET DATA 2 ${dataset}");
       }
-    });
+    }
+    return dataset.map((e) => Country.fromJson(e)).toList();
   }
 
   @override
