@@ -12,16 +12,18 @@ class ApiService {
     required String url,
   }) async {
     try {
-      // EasyLoading.show(status: "Lodding...");
+      EasyLoading.show(status: "Lodding...");
       final responce = await http.get(Uri.parse('$baseUrl/$url'));
       if (responce.statusCode == 200) {
-        // print(responce.body);
+        EasyLoading.dismiss();
+        print(responce.body);
+
         var jsonString = jsonDecode(responce.body);
         return jsonString;
       } else {
         var errorbody = jsonDecode(responce.body);
         Helper.showsnackber(title: 'massage', message: errorbody['message']);
-        // EasyLoading.dismiss();
+        EasyLoading.dismiss();
       }
     } on SocketException catch (_) {
       Helper.showsnackber(

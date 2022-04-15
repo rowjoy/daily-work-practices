@@ -7,8 +7,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:imagetotext/animation/part_1.dart';
 import 'package:imagetotext/views/album_page.dart';
 import 'package:imagetotext/views/comment_page.dart';
+import 'package:imagetotext/views/country_page_list.dart';
 import 'package:imagetotext/views/image_to_text_page.dart';
 import 'package:imagetotext/views/qr_code_scaner.dart';
+import 'package:imagetotext/views/use_profile_page.dart';
 import 'package:imagetotext/views/user/login.dart';
 import 'package:imagetotext/views/user_post_page.dart';
 
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: QrcodeScaner(),
+      home: CountryPage(),
       builder: EasyLoading.init(),
     );
   }
